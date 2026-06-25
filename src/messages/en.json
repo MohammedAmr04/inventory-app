@@ -1,0 +1,66 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "filter": "Filter",
+    "export": "Export",
+    "import": "Import",
+    "loading": "Loading...",
+    "noData": "No data found",
+    "error": "Something went wrong",
+    "retry": "Try again",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "confirm": "Confirm",
+    "close": "Close",
+    "toggleSidebar": "Toggle sidebar",
+    "toggleTheme": "Toggle theme",
+    "language": "Language"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "inventory": "Inventory",
+    "suppliers": "Suppliers",
+    "purchases": "Purchases",
+    "pos": "POS",
+    "expenses": "Expenses",
+    "reports": "Reports",
+    "settings": "Settings"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "description": "Welcome to RetailX",
+    "totalSales": "Total Sales",
+    "totalProducts": "Total Products",
+    "totalSuppliers": "Total Suppliers",
+    "lowStock": "Low Stock Items"
+  },
+  "inventory": {
+    "title": "Inventory",
+    "description": "Manage your products and stock",
+    "products": "Products",
+    "categories": "Categories",
+    "units": "Units",
+    "addProduct": "Add Product",
+    "addCategory": "Add Category",
+    "addUnit": "Add Unit",
+    "stockAdjustment": "Stock Adjustment",
+    "lowStock": "Low Stock"
+  },
+  "settings": {
+    "title": "Settings",
+    "description": "Manage application settings",
+    "general": "General",
+    "store": "Store Information",
+    "taxes": "Taxes",
+    "currency": "Currency",
+    "receipt": "Receipt",
+    "theme": "Theme",
+    "language": "Language"
+  }
+}

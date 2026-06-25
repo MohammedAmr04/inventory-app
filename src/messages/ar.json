@@ -1,0 +1,66 @@
+{
+  "common": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "create": "إنشاء",
+    "search": "بحث",
+    "filter": "تصفية",
+    "export": "تصدير",
+    "import": "استيراد",
+    "loading": "جار التحميل...",
+    "noData": "لا توجد بيانات",
+    "error": "حدث خطأ ما",
+    "retry": "حاول مرة أخرى",
+    "back": "رجوع",
+    "next": "التالي",
+    "submit": "إرسال",
+    "confirm": "تأكيد",
+    "close": "إغلاق",
+    "toggleSidebar": "تبديل الشريط الجانبي",
+    "toggleTheme": "تبديل السمة",
+    "language": "اللغة"
+  },
+  "navigation": {
+    "dashboard": "لوحة القيادة",
+    "inventory": "المخزون",
+    "suppliers": "الموردين",
+    "purchases": "المشتريات",
+    "pos": "نقطة البيع",
+    "expenses": "المصروفات",
+    "reports": "التقارير",
+    "settings": "الإعدادات"
+  },
+  "dashboard": {
+    "title": "لوحة القيادة",
+    "description": "مرحباً بك في RetailX",
+    "totalSales": "إجمالي المبيعات",
+    "totalProducts": "إجمالي المنتجات",
+    "totalSuppliers": "إجمالي الموردين",
+    "lowStock": "المنتجات منخفضة المخزون"
+  },
+  "inventory": {
+    "title": "المخزون",
+    "description": "إدارة المنتجات والمخزون",
+    "products": "المنتجات",
+    "categories": "التصنيفات",
+    "units": "الوحدات",
+    "addProduct": "إضافة منتج",
+    "addCategory": "إضافة تصنيف",
+    "addUnit": "إضافة وحدة",
+    "stockAdjustment": "تسوية المخزون",
+    "lowStock": "مخزون منخفض"
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "description": "إدارة إعدادات التطبيق",
+    "general": "عام",
+    "store": "معلومات المتجر",
+    "taxes": "الضرائب",
+    "currency": "العملة",
+    "receipt": "الفاتورة",
+    "theme": "السمة",
+    "language": "اللغة"
+  }
+}
