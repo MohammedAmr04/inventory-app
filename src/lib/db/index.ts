@@ -1,3 +1,5 @@
+import "server-only";
+
 type Database = Awaited<ReturnType<typeof createDb>>;
 
 let _db: Database | null = null;

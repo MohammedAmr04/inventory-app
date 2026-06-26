@@ -1,11 +1,12 @@
-import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
+import "server-only";
+import { sqliteTable, text, integer, real } from "drizzle-orm/sqlite-core";
 
 export const users = sqliteTable("users", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
   role: text("role").notNull().default("staff"),
-  isActive: integer("is_active", { mode: "boolean" }).default(true),
+  isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
   createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
   updatedAt: text("updated_at").notNull().default("CURRENT_TIMESTAMP"),
 });
@@ -16,4 +17,50 @@ export const settings = sqliteTable("settings", {
   value: text("value").notNull(),
   createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
   updatedAt: text("updated_at").notNull().default("CURRENT_TIMESTAMP"),
+});
+
+export const categories = sqliteTable("categories", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  name: text("name").notNull(),
+  description: text("description"),
+  isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
+  createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
+  updatedAt: text("updated_at").notNull().default("CURRENT_TIMESTAMP"),
+});
+
+export const units = sqliteTable("units", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  name: text("name").notNull(),
+  symbol: text("symbol").notNull(),
+  isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
+  createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
+  updatedAt: text("updated_at").notNull().default("CURRENT_TIMESTAMP"),
+});
+
+export const products = sqliteTable("products", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  name: text("name").notNull(),
+  barcode: text("barcode"),
+  type: text("type", { enum: ["physical", "service"] }).notNull().default("physical"),
+  categoryId: integer("category_id").references(() => categories.id),
+  unitId: integer("unit_id").references(() => units.id),
+  costPrice: real("cost_price").notNull().default(0),
+  salePrice: real("sale_price").notNull().default(0),
+  stock: real("stock").notNull().default(0),
+  lowStockThreshold: real("low_stock_threshold").default(0),
+  description: text("description"),
+  isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
+  createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
+  updatedAt: text("updated_at").notNull().default("CURRENT_TIMESTAMP"),
+});
+
+export const stockAdjustments = sqliteTable("stock_adjustments", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  productId: integer("product_id").notNull().references(() => products.id),
+  type: text("type", { enum: ["increase", "decrease", "set"] }).notNull(),
+  quantity: real("quantity").notNull(),
+  previousStock: real("previous_stock").notNull(),
+  newStock: real("new_stock").notNull(),
+  reason: text("reason"),
+  createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
 });
