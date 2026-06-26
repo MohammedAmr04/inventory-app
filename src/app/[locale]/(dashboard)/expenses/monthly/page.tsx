@@ -1,8 +1,8 @@
 import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/layouts/page-header";
-import { ExpensesSection } from "./_components/expenses-section";
+import { MonthlyExpensesSection } from "../_components/monthly-expenses-section";
 
-export default async function ExpensesPage({
+export default async function MonthlyExpensesPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
@@ -12,8 +12,8 @@ export default async function ExpensesPage({
 
   return (
     <div className="space-y-6">
-      <PageHeader title={t("title")} description={t("description")} />
-      <ExpensesSection />
+      <PageHeader title={t("monthlyTitle")} description={t("monthlyDescription")} />
+      <MonthlyExpensesSection />
     </div>
   );
 }

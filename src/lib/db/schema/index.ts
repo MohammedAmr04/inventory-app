@@ -170,3 +170,23 @@ export const heldInvoiceItems = sqliteTable("held_invoice_items", {
   lineTotal: real("line_total").notNull(),
   createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
 });
+
+export const expenseCategories = sqliteTable("expense_categories", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  name: text("name").notNull(),
+  description: text("description"),
+  isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
+  createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
+  updatedAt: text("updated_at").notNull().default("CURRENT_TIMESTAMP"),
+});
+
+export const expenses = sqliteTable("expenses", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  categoryId: integer("category_id").notNull().references(() => expenseCategories.id),
+  amount: real("amount").notNull(),
+  description: text("description").notNull(),
+  notes: text("notes"),
+  expenseDate: text("expense_date").notNull().default("CURRENT_TIMESTAMP"),
+  createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
+  updatedAt: text("updated_at").notNull().default("CURRENT_TIMESTAMP"),
+});
