@@ -2,6 +2,9 @@
 
 import { useSale } from "@/features/pos/hooks";
 import type { SaleInvoice, InvoiceItem } from "@/features/pos/types";
+import { PrintButton, buildReceiptData } from "@/features/printing/components";
+import { useSettings } from "@/features/settings/hooks";
+import { Loader2 } from "lucide-react";
 
 interface SaleInvoiceDetailProps {
   id: number;
@@ -9,6 +12,7 @@ interface SaleInvoiceDetailProps {
 
 export function SaleInvoiceDetail({ id }: SaleInvoiceDetailProps) {
   const { data, isLoading, error } = useSale(id);
+  const { settings } = useSettings();
 
   if (isLoading) {
     return <div className="py-8 text-center text-muted-foreground">Loading...</div>;
@@ -34,10 +38,19 @@ export function SaleInvoiceDetail({ id }: SaleInvoiceDetailProps) {
               {new Date(invoice.createdAt).toLocaleString()}
             </p>
           </div>
-          <div className="text-right">
-            <div className="text-2xl font-bold">${invoice.netTotal.toFixed(2)}</div>
-            <div className="text-sm capitalize text-muted-foreground">
-              {invoice.paymentMethod}
+          <div className="flex items-start gap-2">
+            {settings && (
+              <PrintButton
+                receiptData={buildReceiptData(invoice, settings)}
+                variant="outline"
+                size="sm"
+              />
+            )}
+            <div className="text-right">
+              <div className="text-2xl font-bold">${invoice.netTotal.toFixed(2)}</div>
+              <div className="text-sm capitalize text-muted-foreground">
+                {invoice.paymentMethod}
+              </div>
             </div>
           </div>
         </div>
