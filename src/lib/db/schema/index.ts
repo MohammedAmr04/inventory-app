@@ -64,3 +64,36 @@ export const stockAdjustments = sqliteTable("stock_adjustments", {
   reason: text("reason"),
   createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
 });
+
+export const suppliers = sqliteTable("suppliers", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  name: text("name").notNull(),
+  phone: text("phone"),
+  email: text("email"),
+  address: text("address"),
+  notes: text("notes"),
+  currentBalance: real("current_balance").notNull().default(0),
+  isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
+  createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
+  updatedAt: text("updated_at").notNull().default("CURRENT_TIMESTAMP"),
+});
+
+export const supplierPayments = sqliteTable("supplier_payments", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  supplierId: integer("supplier_id").notNull().references(() => suppliers.id),
+  amount: real("amount").notNull(),
+  paymentDate: text("payment_date").notNull().default("CURRENT_TIMESTAMP"),
+  notes: text("notes"),
+  createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
+});
+
+export const supplierLedger = sqliteTable("supplier_ledger", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  supplierId: integer("supplier_id").notNull().references(() => suppliers.id),
+  referenceType: text("reference_type", { enum: ["purchase_invoice", "payment", "manual_adjustment"] }).notNull(),
+  referenceId: integer("reference_id"),
+  amount: real("amount").notNull(),
+  balanceAfter: real("balance_after").notNull(),
+  description: text("description"),
+  createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
+});
