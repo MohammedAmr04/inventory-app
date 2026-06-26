@@ -97,3 +97,28 @@ export const supplierLedger = sqliteTable("supplier_ledger", {
   description: text("description"),
   createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
 });
+
+export const purchaseInvoices = sqliteTable("purchase_invoices", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  supplierId: integer("supplier_id").notNull().references(() => suppliers.id),
+  invoiceNumber: text("invoice_number").notNull().unique(),
+  subtotal: real("subtotal").notNull().default(0),
+  discount: real("discount").notNull().default(0),
+  totalAmount: real("total_amount").notNull().default(0),
+  paidAmount: real("paid_amount").notNull().default(0),
+  dueAmount: real("due_amount").notNull().default(0),
+  notes: text("notes"),
+  purchaseDate: text("purchase_date").notNull().default("CURRENT_TIMESTAMP"),
+  createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
+  updatedAt: text("updated_at").notNull().default("CURRENT_TIMESTAMP"),
+});
+
+export const purchaseItems = sqliteTable("purchase_items", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  purchaseInvoiceId: integer("purchase_invoice_id").notNull().references(() => purchaseInvoices.id),
+  productId: integer("product_id").notNull().references(() => products.id),
+  quantity: real("quantity").notNull(),
+  purchasePrice: real("purchase_price").notNull(),
+  lineTotal: real("line_total").notNull(),
+  createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
+});
