@@ -1,9 +1,5 @@
-import { PageHeader } from "@/components/layouts/page-header";
+import { PosScreen } from "./_components/pos-screen";
 
 export default function PosPage() {
-  return (
-    <div>
-      <PageHeader title="POS" description="Point of Sale" />
-    </div>
-  );
+  return <PosScreen />;
 }

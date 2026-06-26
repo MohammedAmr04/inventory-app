@@ -122,3 +122,51 @@ export const purchaseItems = sqliteTable("purchase_items", {
   lineTotal: real("line_total").notNull(),
   createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
 });
+
+export const salesInvoices = sqliteTable("sales_invoices", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  invoiceNumber: text("invoice_number").notNull().unique(),
+  customerName: text("customer_name"),
+  subtotal: real("subtotal").notNull().default(0),
+  discount: real("discount").notNull().default(0),
+  tax: real("tax").notNull().default(0),
+  netTotal: real("net_total").notNull().default(0),
+  paymentMethod: text("payment_method", {
+    enum: ["cash", "card", "mixed"],
+  }).notNull().default("cash"),
+  cashReceived: real("cash_received"),
+  changeAmount: real("change_amount"),
+  createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
+  updatedAt: text("updated_at").notNull().default("CURRENT_TIMESTAMP"),
+});
+
+export const invoiceItems = sqliteTable("invoice_items", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  salesInvoiceId: integer("sales_invoice_id").notNull().references(() => salesInvoices.id),
+  productId: integer("product_id").notNull().references(() => products.id),
+  quantity: real("quantity").notNull(),
+  salePrice: real("sale_price").notNull(),
+  lineTotal: real("line_total").notNull(),
+  createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
+});
+
+export const heldInvoices = sqliteTable("held_invoices", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  referenceNumber: text("reference_number").notNull(),
+  subtotal: real("subtotal").notNull().default(0),
+  discount: real("discount").notNull().default(0),
+  tax: real("tax").notNull().default(0),
+  netTotal: real("net_total").notNull().default(0),
+  createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
+  updatedAt: text("updated_at").notNull().default("CURRENT_TIMESTAMP"),
+});
+
+export const heldInvoiceItems = sqliteTable("held_invoice_items", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  heldInvoiceId: integer("held_invoice_id").notNull().references(() => heldInvoices.id),
+  productId: integer("product_id").notNull().references(() => products.id),
+  quantity: real("quantity").notNull(),
+  salePrice: real("sale_price").notNull(),
+  lineTotal: real("line_total").notNull(),
+  createdAt: text("created_at").notNull().default("CURRENT_TIMESTAMP"),
+});
