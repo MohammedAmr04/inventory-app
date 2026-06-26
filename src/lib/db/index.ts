@@ -1,4 +1,5 @@
 import "server-only";
+import path from "path";
 
 type Database = Awaited<ReturnType<typeof createDb>>;
 
@@ -9,7 +10,8 @@ async function createDb() {
   const { drizzle } = await import("drizzle-orm/better-sqlite3");
   const schema = await import("./schema");
 
-  const sqlite = new Database("retailx.db");
+  const dbPath = process.env.RETAILX_DB_PATH || path.join(process.cwd(), "retailx.db");
+  const sqlite = new Database(dbPath);
   sqlite.pragma("journal_mode = WAL");
   sqlite.pragma("foreign_keys = ON");
 

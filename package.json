@@ -11,7 +11,8 @@
     "format": "prettier --write .",
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
-    "tauri:build": "tauri build"
+    "tauri:build": "tauri build",
+    "tauri:serve": "node .next/standalone/server.js"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

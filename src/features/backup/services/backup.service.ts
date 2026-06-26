@@ -3,7 +3,7 @@ import { promises as fs } from "fs";
 import path from "path";
 import { BACKUP_DIR, DB_FILE, type BackupInfo, type BackupResult } from "../types";
 
-const dbPath = path.resolve(DB_FILE);
+const dbPath = process.env.RETAILX_DB_PATH ? path.resolve(process.env.RETAILX_DB_PATH) : path.resolve(DB_FILE);
 const backupDir = path.resolve(BACKUP_DIR);
 
 export class BackupService {

@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "identifier": "com.retailx.app",
   "build": {
-    "frontendDist": "../out",
+    "frontendDist": "../.next",
     "devUrl": "http://localhost:3000",
     "beforeDevCommand": "npm run dev",
     "beforeBuildCommand": "npm run build"
@@ -13,13 +13,14 @@
     "windows": [
       {
         "title": "RetailX - Smart Inventory, POS & Mini-ERP",
-"width": 800,
-        "height": 600,
+        "width": 1280,
+        "height": 800,
         "resizable": true,
         "fullscreen": false,
         "decorations": true,
-        "minimumWidth": 1024,
-        "minimumHeight": 700
+        "center": true,
+        "minWidth": 1024,
+        "minHeight": 700
       }
     ],
     "security": {
@@ -28,7 +29,7 @@
   },
   "bundle": {
     "active": true,
-    "targets": "all",
+    "targets": ["msi", "nsis"],
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
@@ -36,8 +37,14 @@
       "icons/icon.icns",
       "icons/icon.ico"
     ],
-    "android": {
-      "debugApplicationIdSuffix": ".debug"
+    "windows": {
+      "wix": {
+        "language": "en-US",
+        "template": null
+      },
+      "nsis": {
+        "installMode": "currentUser"
+      }
     }
   }
 }
