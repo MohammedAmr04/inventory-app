@@ -356,6 +356,17 @@
     "staff": "Staff",
     "actions": "Actions",
     "toggleActive": "Toggle Active/Inactive",
-    "confirmToggleActive": "Are you sure you want to toggle this user's status?"
+    "confirmToggleActive": "Are you sure you want to toggle this user's status?",
+    "backup": "Backup & Restore",
+    "createBackup": "Create Backup",
+    "noBackups": "No backups found",
+    "filename": "Filename",
+    "size": "Size",
+    "date": "Date",
+    "restore": "Restore",
+    "delete": "Delete",
+    "confirmRestore": "Are you sure you want to restore this backup? The current database will be overwritten.",
+    "confirmDeleteBackup": "Are you sure you want to delete this backup?",
+    "restoreSuccess": "Database restored successfully. Reloading..."
   }
 }
