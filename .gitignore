@@ -67,6 +67,12 @@ src-tauri/Cargo.lock
 *.rpm
 
 # =========================
+# Tauri Bundled Resources (built during tauri:build)
+# =========================
+src-tauri/resources/server/
+src-tauri/resources/server.tar.gz
+
+# =========================
 # Database & App Data
 # =========================
 *.db

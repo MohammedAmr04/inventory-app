@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAppStore } from "@/stores/app-store";
 import { cn } from "@/lib/utils";
 import { ROUTES } from "@/constants";
 import { useTranslations } from "next-intl";
+import { Link } from "@/lib/i18n/navigation";
 
 const navItems = [
   { href: ROUTES.DASHBOARD, label: "navigation.dashboard", icon: "📊" },

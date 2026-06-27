@@ -1,8 +1,9 @@
-import { getDb } from "../index";
 import { settings } from "../schema";
+import type { BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
 
-export async function seedDatabase() {
-  const db = await getDb();
+export async function seedDatabase(
+  db: BetterSQLite3Database<typeof import("../schema")>
+) {
   const existingSettings = await db.select().from(settings);
 
   if (existingSettings.length > 0) return;
